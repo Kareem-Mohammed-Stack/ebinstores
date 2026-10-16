@@ -1,0 +1,20 @@
+{%- comment -%}
+  Renders the Orca site logo from theme assets.
+  Accepts:
+  - class: {String} CSS classes for the img
+  - sizes: {String} optional sizes attribute
+{%- endcomment -%}
+{%- liquid
+  assign logo_width = settings.logo_width | default: 190
+  assign logo_height = logo_width | times: 758 | divided_by: 2073
+  assign logo_alt = shop.name | escape
+-%}
+<img
+  src="{{ 'orca-logo.svg' | asset_url }}"
+  class="{{ class }}"
+  width="{{ logo_width }}"
+  height="{{ logo_height }}"
+  alt="{{ logo_alt }}"
+  {% if sizes != blank %}sizes="{{ sizes }}"{% endif %}
+  loading="eager"
+>

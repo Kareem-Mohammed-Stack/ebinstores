@@ -1,0 +1,94 @@
+{% doc %}
+  Collection card with a gradient stage, product cutout, title, and count.
+
+  @param {object} [card_collection] - Collection to render
+  @param {number} [index] - Card index for staggered decoration
+  @param {object} [card_image] - Optional image override from block settings
+
+  @example
+  {% render 'orca-collection-card', card_collection: collection, index: forloop.index %}
+{% enddoc %}
+
+{%- liquid
+  assign media = card_image
+  assign cutout_asset = blank
+
+  case card_collection.handle
+    when 'best-sellers'
+      assign cutout_asset = 'orca-cat-best-sellers.png'
+    when 'body-relief'
+      assign cutout_asset = 'orca-cat-body-relief.png'
+    when 'clothes'
+      assign cutout_asset = 'orca-cat-clothes.png'
+    when 'hair-kit'
+      assign cutout_asset = 'orca-cat-hair-kit.png'
+    when 'modern-glow'
+      assign cutout_asset = 'orca-cat-modern-glow.png'
+    when 'safe-fun'
+      assign cutout_asset = 'orca-cat-safe-fun.png'
+  endcase
+
+  if cutout_asset == blank
+    if media == blank
+      assign media = card_collection.featured_image
+    endif
+    if media == blank and card_collection.products.first.featured_image != blank
+      assign media = card_collection.products.first.featured_image
+    endif
+  endif
+
+  assign count = card_collection.all_products_count | default: 0
+  if card_collection.title != blank
+    assign title = card_collection.title
+  else
+    assign title = 'onboarding.collection_title' | t
+  endif
+-%}
+
+{%- if card_collection != blank and card_collection.url != blank -%}
+  <a href="{{ card_collection.url }}" class="orca-cat-card">
+{%- else -%}
+  <div class="orca-cat-card orca-cat-card--placeholder" role="link" aria-disabled="true">
+{%- endif -%}
+  <span class="orca-cat-card__stage">
+    {%- if cutout_asset != blank -%}
+      <img
+        class="orca-cat-card__image"
+        src="{{ cutout_asset | asset_url }}"
+        alt="{{ title | escape }}"
+        width="900"
+        height="900"
+        loading="lazy"
+        decoding="async"
+      >
+    {%- elsif media != blank -%}
+      {{
+        media
+        | image_url: width: 900
+        | image_tag:
+          class: 'orca-cat-card__image orca-cat-card__image--knockout',
+          widths: '360, 540, 720, 900',
+          sizes: '(min-width: 990px) 22vw, (min-width: 750px) 36vw, 72vw',
+          loading: 'lazy',
+          alt: title
+      }}
+    {%- else -%}
+      <span class="orca-cat-card__image orca-cat-card__image--empty" aria-hidden="true"></span>
+    {%- endif -%}
+  </span>
+  <span class="orca-cat-card__footer">
+    <span class="orca-cat-card__copy">
+      <span class="orca-cat-card__title">{{ title | escape }}</span>
+      {%- if card_collection != blank -%}
+        <span class="orca-cat-card__count">{{ 'sections.collection_list.product_count' | t: count: count }}</span>
+      {%- endif -%}
+    </span>
+    <span class="orca-cat-card__go" aria-hidden="true">
+      {% render 'orca-icon', icon: 'arrow-right' %}
+    </span>
+  </span>
+{%- if card_collection != blank and card_collection.url != blank -%}
+  </a>
+{%- else -%}
+  </div>
+{%- endif -%}

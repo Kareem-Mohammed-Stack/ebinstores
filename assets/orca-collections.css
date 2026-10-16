@@ -1,0 +1,273 @@
+.section-collection-list {
+  --orca-cat-from: var(--orca-brand-1, #007979);
+  --orca-cat-mid: var(--orca-brand-2, #24B1B1);
+  --orca-cat-to: var(--orca-brand-3, #FFE2AF);
+  --orca-cat-pedestal: var(--orca-brand-1, #007979);
+  --orca-cat-accent: var(--orca-brand-4, #E37434);
+}
+
+.orca-cats__header {
+  max-width: 46rem;
+  margin: 0 auto 3.2rem;
+  text-align: center;
+}
+
+.orca-cats__eyebrow {
+  display: block;
+  margin: 0 0 .8rem;
+  color: var(--orca-cat-from);
+  font-size: 1.2rem;
+  font-weight: 650;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.orca-cats__title {
+  margin: 0;
+  letter-spacing: -.04em;
+}
+
+.orca-cats__description {
+  margin: 1rem 0 0;
+  color: rgba(var(--color-foreground), .62);
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+.orca-cats__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--orca-cats-cols, 3), minmax(0, 1fr));
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.orca-cats__item {
+  min-width: 0;
+}
+
+.orca-cat-card {
+  --orca-cat-radius: 28px;
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: 38rem;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: var(--orca-cat-radius);
+  color: #fff;
+  text-decoration: none;
+  background: linear-gradient(165deg, var(--orca-cat-from) 0%, var(--orca-cat-mid) 55%, #7ec8c0 100%);
+  box-shadow: 0 16px 36px rgba(0, 61, 61, .16);
+  transition: transform 240ms ease, box-shadow 240ms ease;
+}
+
+.orca-cat-card:hover,
+.orca-cat-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 44px rgba(0, 61, 61, .22);
+}
+
+.orca-cat-card:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.orca-cat-card__stage {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 26rem;
+  padding: 3.6rem 2.8rem 1.6rem;
+}
+
+.orca-cat-card__image {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: min(82%, 22rem);
+  max-height: 24rem;
+  margin: 0 auto;
+  object-fit: contain;
+  object-position: center center;
+  background: transparent !important;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  filter: drop-shadow(0 12px 20px rgba(0, 40, 40, .2));
+  transition: transform 240ms ease;
+}
+
+/* Only for leftover non-cutout photos with light studio backgrounds */
+.orca-cat-card__image--knockout {
+  mix-blend-mode: multiply;
+  filter: none;
+}
+
+.orca-cat-card:hover .orca-cat-card__image,
+.orca-cat-card:focus-visible .orca-cat-card__image {
+  transform: translateY(-0.4rem) scale(1.02);
+}
+
+.orca-cat-card__image--empty {
+  width: min(56%, 12rem);
+  aspect-ratio: 1;
+  border-radius: 2rem;
+  background: rgba(255, 255, 255, .18);
+  mix-blend-mode: normal;
+  filter: none;
+}
+
+.orca-cat-card__footer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.6rem;
+  padding: 1.2rem 2rem 2rem;
+  background: linear-gradient(180deg, transparent, rgba(0, 50, 50, .18) 40%, rgba(0, 40, 40, .28));
+}
+
+.orca-cat-card__copy {
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+  min-width: 0;
+}
+
+.orca-cat-card__title {
+  font-family: var(--font-heading-family);
+  font-size: clamp(2rem, 2vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1.12;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.orca-cat-card__count {
+  font-size: 1.35rem;
+  letter-spacing: .01em;
+  opacity: .84;
+}
+
+.orca-cat-card__go {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 4.2rem;
+  height: 4.2rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .18);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .22);
+  transition: background-color 180ms ease, transform 180ms ease;
+}
+
+.orca-cat-card:hover .orca-cat-card__go,
+.orca-cat-card:focus-visible .orca-cat-card__go {
+  background: rgba(255, 255, 255, .28);
+  transform: translateX(2px);
+}
+
+.orca-cat-card__go .orca-icon {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+.orca-cats__all {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.8rem;
+}
+
+.orca-cats__all-link {
+  color: var(--orca-cat-from);
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: -.01em;
+  text-decoration: none;
+}
+
+.orca-cats__all-link:hover {
+  text-decoration: underline;
+  text-underline-offset: .3rem;
+}
+
+@media screen and (max-width: 989px) {
+  .orca-cats__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .orca-cats__grid {
+    grid-template-columns: repeat(var(--orca-cats-cols-mobile, 1), minmax(0, 1fr));
+    gap: 1.4rem;
+  }
+
+  .orca-cat-card {
+    min-height: 34rem;
+  }
+
+  .orca-cats__header {
+    margin-bottom: 2.4rem;
+  }
+
+  /* Mobile swipe carousel (no Dawn slider) */
+  .orca-cats--carousel .orca-cats__grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 1.2rem;
+    margin: 0;
+    padding: 0.4rem 0 1.2rem;
+    --orca-cat-card-width: min(78vw, 28rem);
+    padding-inline: calc((100% - var(--orca-cat-card-width)) / 2);
+    scroll-padding-inline: calc((100% - var(--orca-cat-card-width)) / 2);
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .orca-cats--carousel .orca-cats__grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .orca-cats--carousel .orca-cats__item {
+    flex: 0 0 var(--orca-cat-card-width);
+    width: var(--orca-cat-card-width);
+    max-width: none;
+    scroll-snap-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orca-cat-card,
+  .orca-cat-card__image,
+  .orca-cat-card__go {
+    transition: none;
+  }
+
+  .orca-cat-card:hover,
+  .orca-cat-card:focus-visible,
+  .orca-cat-card:hover .orca-cat-card__image,
+  .orca-cat-card:focus-visible .orca-cat-card__image,
+  .orca-cat-card:hover .orca-cat-card__go,
+  .orca-cat-card:focus-visible .orca-cat-card__go {
+    transform: none;
+  }
+
+  .orca-cats--carousel .orca-cats__grid {
+    scroll-behavior: auto;
+  }
+}

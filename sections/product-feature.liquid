@@ -1,0 +1,192 @@
+{{ 'product-feature.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign feature_image = section.settings.image
+  assign media_pos = section.settings.product_image_position | default: 1 | plus: 0
+  if media_pos < 1
+    assign media_pos = 1
+  endif
+
+  if feature_image == blank and product.media.size > 0
+    for media in product.media
+      if forloop.index == media_pos
+        assign feature_image = media.preview_image | default: media
+        break
+      endif
+    endfor
+  endif
+
+  if feature_image == blank and product.featured_image != blank
+    assign feature_image = product.featured_image
+  endif
+  assign feature_alt = section.settings.image_alt | default: product.title
+-%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  #ProductFeature-{{ section.id }} {
+    --feature-eyebrow-color: {{ section.settings.eyebrow_color | default: '#85444C' }};
+    --feature-radius: {{ section.settings.corner_radius | default: 24 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section
+  class="product-feature section-{{ section.id }}-padding"
+  id="ProductFeature-{{ section.id }}"
+>
+  <div class="page-width">
+    <div class="product-feature__grid{% if section.settings.layout == 'text_first' %} product-feature__grid--reverse{% endif %}">
+      <div class="product-feature__media">
+        {%- if feature_image != blank -%}
+          {{
+            feature_image
+            | image_url: width: 1400
+            | image_tag:
+              class: 'product-feature__img',
+              loading: 'lazy',
+              widths: '400, 600, 800, 1000, 1200, 1400',
+              sizes: '(min-width: 990px) 48vw, 100vw',
+              alt: feature_alt
+          }}
+        {%- else -%}
+          <div class="product-feature__img product-feature__img--placeholder">
+            {{ 'product-1' | placeholder_svg_tag }}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="product-feature__content">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="product-feature__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+
+        {%- if section.settings.heading != blank -%}
+          <h2 class="product-feature__heading">{{ section.settings.heading | escape }}</h2>
+        {%- endif -%}
+
+        {%- if section.settings.text_1 != blank -%}
+          <p class="product-feature__text">{{ section.settings.text_1 | escape }}</p>
+        {%- endif -%}
+
+        {%- if section.settings.text_2 != blank -%}
+          <p class="product-feature__text">{{ section.settings.text_2 | escape }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Feature",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Custom image",
+      "info": "Optional. If empty, automatically uses the product image below."
+    },
+    {
+      "type": "range",
+      "id": "product_image_position",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "label": "Product image position",
+      "info": "1 = first product photo, 2 = second photo, etc.",
+      "default": 1
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text"
+    },
+    {
+      "type": "range",
+      "id": "corner_radius",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Image corner radius",
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Desktop layout",
+      "options": [
+        { "value": "image_first", "label": "Image left, text right" },
+        { "value": "text_first", "label": "Text left, image right" }
+      ],
+      "default": "image_first"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "THE CHARMS"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow color",
+      "default": "#85444C"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Charms with weight, not plastic glitter."
+    },
+    {
+      "type": "textarea",
+      "id": "text_1",
+      "label": "Paragraph 1",
+      "default": "Metal-alloy charms, enamel fills, polished edges. They sit on the cord without spinning like toys."
+    },
+    {
+      "type": "textarea",
+      "id": "text_2",
+      "label": "Paragraph 2",
+      "default": "Enamel character-inspired charms. Stretch cord + spare. Extra beads for mistakes. Fan-inspired — not official licensed merchandise."
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Feature"
+    }
+  ]
+}
+{% endschema %}

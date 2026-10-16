@@ -1,0 +1,20 @@
+.related-products {
+  display: block;
+}
+
+.related-products__heading {
+  margin: 0 0 3rem;
+  text-align: center;
+}
+
+.related-products__heading.left {
+  text-align: left;
+}
+
+.related-products__heading.center {
+  text-align: center;
+}
+
+.related-products__heading.right {
+  text-align: right;
+}

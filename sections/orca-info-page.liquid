@@ -1,0 +1,170 @@
+{{ 'orca-info-page.css' | asset_url | stylesheet_tag }}
+
+{% render 'orca-info-page', section: section %}
+
+{% schema %}
+{
+  "name": "Store Information",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero Section"
+    },
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge text",
+      "default": "ABOUT EBIN STORES"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Everyday products, chosen with care."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "We curate practical, high-quality home, wellness, and lifestyle essentials designed to make everyday living simpler, healthier, and more enjoyable."
+    },
+    {
+      "type": "header",
+      "content": "Key Metrics / Highlights"
+    },
+    {
+      "type": "text",
+      "id": "stat_1_number",
+      "label": "Stat 1 Number",
+      "default": "50,000+"
+    },
+    {
+      "type": "text",
+      "id": "stat_1_label",
+      "label": "Stat 1 Label",
+      "default": "Happy Customers"
+    },
+    {
+      "type": "text",
+      "id": "stat_2_number",
+      "label": "Stat 2 Number",
+      "default": "4.8 ★"
+    },
+    {
+      "type": "text",
+      "id": "stat_2_label",
+      "label": "Stat 2 Label",
+      "default": "Customer Satisfaction"
+    },
+    {
+      "type": "text",
+      "id": "stat_4_number",
+      "label": "Stat 4 Number",
+      "default": "14-Day"
+    },
+    {
+      "type": "text",
+      "id": "stat_4_label",
+      "label": "Stat 4 Label",
+      "default": "Money-Back Guarantee"
+    },
+    {
+      "type": "header",
+      "content": "Story & Mission"
+    },
+    {
+      "type": "text",
+      "id": "story_eyebrow",
+      "label": "Story Eyebrow",
+      "default": "OUR STORY & MISSION"
+    },
+    {
+      "type": "text",
+      "id": "story_heading",
+      "label": "Story Heading",
+      "default": "Crafted for Convenience, Built on Quality"
+    },
+    {
+      "type": "textarea",
+      "id": "story_text",
+      "label": "Story Text",
+      "default": "At Ebinstores, we believe quality home, wellness, and lifestyle items shouldn’t come with exorbitant markups or questionable reliability. We curate functional products that solve real everyday problems and make daily routines feel effortless."
+    },
+    {
+      "type": "text",
+      "id": "quote_tag",
+      "label": "Quote Tag",
+      "default": "THE EBIN STANDARD"
+    },
+    {
+      "type": "textarea",
+      "id": "quote_text",
+      "label": "Quote Text",
+      "default": "We don’t sell everything under the sun. We only offer products we would proudly use in our own homes."
+    },
+    {
+      "type": "text",
+      "id": "quote_author",
+      "label": "Quote Author",
+      "default": "The Ebinstores Team"
+    },
+    {
+      "type": "header",
+      "content": "Core Commitments"
+    },
+    {
+      "type": "text",
+      "id": "values_eyebrow",
+      "label": "Values Eyebrow",
+      "default": "WHY SHOP WITH US"
+    },
+    {
+      "type": "text",
+      "id": "values_title",
+      "label": "Values Title",
+      "default": "Our Core Commitments to You"
+    },
+    {
+      "type": "textarea",
+      "id": "values_subtitle",
+      "label": "Values Subtitle",
+      "default": "Here is what guides every decision we make from product curation to customer delivery."
+    },
+    {
+      "type": "header",
+      "content": "Contact Callout"
+    },
+    {
+      "type": "text",
+      "id": "contact_eyebrow",
+      "label": "Contact Eyebrow",
+      "default": "NEED ASSISTANCE?"
+    },
+    {
+      "type": "text",
+      "id": "contact_title",
+      "label": "Contact Title",
+      "default": "We’re Always Here Whenever You Need Us"
+    },
+    {
+      "type": "textarea",
+      "id": "contact_desc",
+      "label": "Contact Description",
+      "default": "Have questions about a product, delivery time, or an existing order? Get in touch with us anytime."
+    },
+    {
+      "type": "text",
+      "id": "contact_email",
+      "label": "Contact Email",
+      "default": "info@ebin-stores.com"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Store Information"
+    }
+  ]
+}
+{% endschema %}

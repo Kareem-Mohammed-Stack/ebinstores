@@ -1,0 +1,23 @@
+{%- comment -%}
+  Clean product description overrides for broken/nested store HTML.
+  Falls back to product.description when no override exists.
+{%- endcomment -%}
+
+{%- if product.handle == '1989-album-hoodie' -%}
+  <p>The 1989 Album Hoodie is a stylish and cozy tribute to Taylor Swift’s iconic <em>1989</em> era. Designed for fans who love the nostalgia of this groundbreaking album, this hoodie embodies the sleek and classic aesthetic of <em>1989</em>.</p>
+  <ul>
+    <li><strong>Inspired by 1989 Era:</strong> Album-themed graphics, text, or subtle nods to the <em>1989</em> aesthetic. Perfect for Swifties who want to represent their love for the album in a stylish way.</li>
+    <li><strong>Soft &amp; Cozy Fabric:</strong> Made from a high-quality cotton-polyester blend for a soft, warm, and breathable feel. Ideal for all-day wear, whether indoors or outdoors.</li>
+    <li><strong>Classic Hoodie Fit:</strong> Adjustable drawstring hood for extra warmth, plus a spacious kangaroo pocket for practicality and style.</li>
+    <li><strong>Versatile Styling:</strong> Pairs effortlessly with jeans, leggings, or joggers. Great for concerts, fan meetups, or everyday wear.</li>
+  </ul>
+  <h4><strong>Specifications</strong></h4>
+  <ul>
+    <li><strong>Material:</strong> Premium cotton-polyester blend (typically 80% cotton, 20% polyester) for comfort and durability.</li>
+    <li><strong>Fit:</strong> Unisex, relaxed fit suitable for all body types.</li>
+    <li><strong>Care Instructions:</strong> Machine wash cold; tumble dry low; avoid bleach to preserve the fabric and design.</li>
+  </ul>
+  <p>Relive the <em>1989</em> magic with the 1989 Album Hoodie—a must-have for every TS fan!</p>
+{%- else -%}
+  {{ product.description }}
+{%- endif -%}
